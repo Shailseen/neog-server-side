@@ -25,8 +25,6 @@ import { useEffect } from "react";
 import { Merge } from "@mui/icons-material";
 
 export const Question = () => {
-
-
   const [question, setQuestion] = useState("");
 
   const [codeSignature, setCodeSigntaure] = useState("");
@@ -65,7 +63,6 @@ export const Question = () => {
   const [testCase10, setTestCase10] = useState("");
   const [answer10, setAnswer10] = useState("");
 
-
   const filledData = () => {
     setAnswer1("shailesh");
     setAnswer2("cde");
@@ -81,17 +78,17 @@ export const Question = () => {
     setTestCase2("ab,cde");
     setTestCase3("aaa,aaaa");
     setTestCase4("aaa,aaaa,aaaaa");
-    setTestCase5("aakksank,jkjkj,kk,w")
-    setTestCase6("asks,dd")
-    setTestCase7("abcd,yd")
-    setTestCase8("ab,bcba")
-    setTestCase9("ab,vgvg")
-    setTestCase10("asssssd,aaaaaaa,bbbbbbbbbbb")
-    setQuestion("Given an array of names ,return the name with maximum length.")
-    setCodeSigntaure("const longestName = (arr) => {};")
-    setTag("Array,String");
-
-  }
+    setTestCase5("aakksank,jkjkj,kk,w");
+    setTestCase6("asks,dd");
+    setTestCase7("abcd,yd");
+    setTestCase8("ab,bcba");
+    setTestCase9("ab,vgvg");
+    setTestCase10("asssssd,aaaaaaa,bbbbbbbbbbb");
+    setQuestion(
+      "Given an array of names ,return the name with maximum length."
+    );
+    setCodeSigntaure("const longestName = (arr) => {};");
+  };
 
   const bull = (
     <Box
@@ -119,7 +116,8 @@ export const Question = () => {
     console.log(1);
     let tcParser = null;
     let answerParser = null;
-    const rt = relatedTopic.split(",");
+    const rt = JSON.stringify(relatedTopic.split(","));
+    console.log(tag);
     switch (tcDatatype) {
       case "String":
         tcParser = stringParser;
@@ -204,11 +202,8 @@ export const Question = () => {
     };
     console.log(3);
     console.log(docData);
-   
 
-    addDoc(collection(firestore, "questions"),docData);
-    
-
+    addDoc(collection(firestore, "questions"), docData);
 
     // addDoc(collection(firestore,"questions"),docData)
     //   .then(() => {
@@ -551,11 +546,7 @@ export const Question = () => {
             Add Question
           </Button>
 
-          <Button
-            onClick={() => filledData()}
-            size="small"
-            variant="contained"
-          >
+          <Button onClick={() => filledData()} size="small" variant="contained">
             fill
           </Button>
         </CardActions>
