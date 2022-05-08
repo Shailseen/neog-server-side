@@ -25,6 +25,7 @@ import { useEffect } from "react";
 import { Merge } from "@mui/icons-material";
 
 export const Question = () => {
+  const [isDataUploaded,setIsDataUploaded] = useState("")
   const [question, setQuestion] = useState("");
 
   const [codeSignature, setCodeSigntaure] = useState("");
@@ -203,7 +204,13 @@ export const Question = () => {
     console.log(3);
     console.log(docData);
 
-    addDoc(collection(firestore, "questions"), docData);
+    addDoc(collection(firestore, "questions"), docData)
+    .then(() => {
+      setIsDataUploaded("Data uploaded Successfully");
+    })
+    .catch((error) => {
+      setIsDataUploaded("Something went wrong!!!");
+    })
 
     // addDoc(collection(firestore,"questions"),docData)
     //   .then(() => {
@@ -549,6 +556,9 @@ export const Question = () => {
           <Button onClick={() => filledData()} size="small" variant="contained">
             fill
           </Button>
+          <Typography variant="div">
+            {isDataUploaded}
+          </Typography>
         </CardActions>
       </Card>
     </>
