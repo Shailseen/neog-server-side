@@ -25,9 +25,9 @@ import { useEffect } from "react";
 import { Merge } from "@mui/icons-material";
 
 export const Question = () => {
-  const [isDataUploaded,setIsDataUploaded] = useState("")
+  const [isDataUploaded, setIsDataUploaded] = useState("");
   const [question, setQuestion] = useState("");
-
+  const [title,setTitle] = useState("");
   const [codeSignature, setCodeSigntaure] = useState("");
   const [tag, setTag] = useState("Easy");
   const [relatedTopic, setRelatedTopic] = useState("");
@@ -193,6 +193,7 @@ export const Question = () => {
 
     const docData = {
       question: question,
+      title: title,
       tag: tag,
       testCaseArr: testcaseArray,
       tcDatatype: tcDatatype,
@@ -205,12 +206,12 @@ export const Question = () => {
     console.log(docData);
 
     addDoc(collection(firestore, "questions"), docData)
-    .then(() => {
-      setIsDataUploaded("Data uploaded Successfully");
-    })
-    .catch((error) => {
-      setIsDataUploaded("Something went wrong!!!");
-    })
+      .then(() => {
+        setIsDataUploaded("Data uploaded Successfully");
+      })
+      .catch((error) => {
+        setIsDataUploaded("Something went wrong!!!");
+      });
 
     // addDoc(collection(firestore,"questions"),docData)
     //   .then(() => {
@@ -241,6 +242,13 @@ export const Question = () => {
             onChange={(e) => setQuestion(e.target.value)}
             id="outlined-basic"
             label="Question"
+            variant="outlined"
+          />
+
+          <TextField
+            onChange={(e) => setTitle(e.target.value)}
+            id="outlined-basic"
+            label="Title"
             variant="outlined"
           />
 
@@ -556,9 +564,7 @@ export const Question = () => {
           <Button onClick={() => filledData()} size="small" variant="contained">
             fill
           </Button>
-          <Typography variant="div">
-            {isDataUploaded}
-          </Typography>
+          <Typography variant="div">{isDataUploaded}</Typography>
         </CardActions>
       </Card>
     </>
