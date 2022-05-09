@@ -1,7 +1,7 @@
 # About
-### This is companion admin website to [project](https://neoservers.netlify.app/) which was made during neogHack 2022.
+### This is companion admin website to [project](https://github.com/Shailseen/my-prep) which was made during neogHack 2022.
 
-### This web app faciliatets in adding problems to the web app.
+### This web app facilitates in adding problems to the web platform.
 
 ## Technologies used
 - React
